@@ -12,7 +12,7 @@ function startGame() {
         return;
     }
 
-    // Esconder a tela inicial e mostrar a tela do jogo
+    
     document.getElementById('start-container').style.display = 'none';
     document.getElementById('game-container').style.display = 'block';
 
@@ -35,7 +35,7 @@ function showQuestion() {
     const resultContainer = document.getElementById('result-container');
     const nextButton = document.getElementById('next-button');
 
-    // Limpar resultado da pergunta anterior
+    
     resultContainer.innerText = '';
 
     const currentQuestion = questions[currentRoundIndex][currentQuestionIndex];
@@ -73,7 +73,8 @@ function checkAnswer(selectedOption) {
         playerScore += currentQuestion.points.correct;
     } else {
         resultContainer.innerText = `Você errou! Pontuação: +${currentQuestion.points.incorrect}`;
-        playerScore += currentQuestion.points.incorrect;
+        endGame();
+        return;
     }
 
     const nextButton = document.getElementById('next-button');
@@ -99,5 +100,28 @@ function nextQuestion() {
 }
 
 function endGame() {
-    alert(`Parabéns, ${playerName}! Você completou o jogo do Show do Milhão.\nPontuação final: ${playerScore}`);
+    const correctAnswer = questions[currentRoundIndex][currentQuestionIndex].answer;
+
+    alert(
+        `Parabéns, ${playerName}! Você parou na rodada ${currentRoundIndex + 1}.\n` +
+        `Resposta correta da última pergunta: ${correctAnswer}\n` +
+        `Pontuação final: ${playerScore}`
+    );
+
+    const playAgain = confirm('Deseja jogar novamente?');
+    
+    if (playAgain) {
+        resetGame();
+    } else {
+        
+    }
+}
+
+function resetGame() {
+    currentRoundIndex = 0;
+    currentQuestionIndex = 0;
+    playerScore = 0;
+
+    showPlayerInfo();
+    showQuestion();
 }
