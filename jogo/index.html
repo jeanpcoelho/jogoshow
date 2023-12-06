@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
+    <div id="start-container">
+        <label for="playerName">Digite seu nome:</label>
+        <input type="text" id="playerName" />
+        <button onclick="startGame()">Iniciar Jogo</button>
+    </div>
+
+    <div id="game-container" style="display:none;">
         <div id="question-container"></div>
         <div id="options-container"></div>
         <button id="next-button" onclick="nextQuestion()">Próxima Pergunta</button>
     </div>
+
     <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>

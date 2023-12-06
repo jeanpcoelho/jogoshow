@@ -1,7 +1,20 @@
+let playerName = '';
 let currentRoundIndex = 0;
 let currentQuestionIndex = 0;
 
 function startGame() {
+    const playerNameInput = document.getElementById('playerName');
+    playerName = playerNameInput.value.trim();
+
+    if (playerName === '') {
+        alert('Por favor, digite seu nome.');
+        return;
+    }
+
+    // Esconder a tela inicial e mostrar a tela do jogo
+    document.getElementById('start-container').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+
     showQuestion();
 }
 
@@ -61,9 +74,7 @@ function nextQuestion() {
         if (currentRoundIndex < questions.length) {
             showQuestion();
         } else {
-            alert('Parabéns! Você completou o jogo do Show do Milhão.');
+            alert(`Parabéns, ${playerName}! Você completou o jogo do Show do Milhão.`);
         }
     }
 }
-
-startGame();
