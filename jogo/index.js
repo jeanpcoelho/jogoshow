@@ -1,6 +1,7 @@
 let playerName = '';
 let currentRoundIndex = 0;
 let currentQuestionIndex = 0;
+let playerScore = 0;
 
 function startGame() {
     const playerNameInput = document.getElementById('playerName');
@@ -15,7 +16,17 @@ function startGame() {
     document.getElementById('start-container').style.display = 'none';
     document.getElementById('game-container').style.display = 'block';
 
+    // Exibir informações do jogador e da rodada
+    showPlayerInfo();
     showQuestion();
+}
+
+function showPlayerInfo() {
+    const playerInfoElement = document.getElementById('playerInfo');
+    playerInfoElement.innerText = `Jogador: ${playerName} | Pontuação: ${playerScore}`;
+    
+    const roundInfoElement = document.getElementById('roundInfo');
+    roundInfoElement.innerText = `Rodada: ${currentRoundIndex + 1}`;
 }
 
 function showQuestion() {
@@ -54,6 +65,7 @@ function checkAnswer(selectedOption) {
 
     if (selectedOption === currentQuestion.answer) {
         alert('Resposta Correta!');
+        playerScore++;
     } else {
         alert('Resposta Incorreta!');
     }
@@ -72,9 +84,14 @@ function nextQuestion() {
         currentRoundIndex++;
 
         if (currentRoundIndex < questions.length) {
+            showPlayerInfo();
             showQuestion();
         } else {
-            alert(`Parabéns, ${playerName}! Você completou o jogo do Show do Milhão.`);
+            endGame();
         }
     }
+}
+
+function endGame() {
+    alert(`Parabéns, ${playerName}! Você completou o jogo do Show do Milhão.\nPontuação final: ${playerScore}`);
 }
