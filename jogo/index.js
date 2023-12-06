@@ -1,3 +1,4 @@
+let currentRoundIndex = 0;
 let currentQuestionIndex = 0;
 
 function startGame() {
@@ -9,7 +10,7 @@ function showQuestion() {
     const optionsContainer = document.getElementById('options-container');
     const nextButton = document.getElementById('next-button');
 
-    const currentQuestion = questions[currentQuestionIndex];
+    const currentQuestion = questions[currentRoundIndex][currentQuestionIndex];
 
     questionContainer.innerText = currentQuestion.question;
     optionsContainer.innerHTML = '';
@@ -24,11 +25,11 @@ function showQuestion() {
 
     nextButton.style.display = 'none';
 
-    if (currentQuestionIndex === questions.length - 1) {
+    if (currentRoundIndex === questions.length - 1 && currentQuestionIndex === questions[currentRoundIndex].length - 1) {
         nextButton.innerText = 'Finalizar Jogo';
     }
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < questions[currentRoundIndex].length - 1) {
         nextButton.style.display = 'none';
     } else {
         nextButton.style.display = 'block';
@@ -36,7 +37,7 @@ function showQuestion() {
 }
 
 function checkAnswer(selectedOption) {
-    const currentQuestion = questions[currentQuestionIndex];
+    const currentQuestion = questions[currentRoundIndex][currentQuestionIndex];
 
     if (selectedOption === currentQuestion.answer) {
         alert('Resposta Correta!');
@@ -51,10 +52,17 @@ function checkAnswer(selectedOption) {
 function nextQuestion() {
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questions[currentRoundIndex].length) {
         showQuestion();
     } else {
-        alert('Parabéns! Você completou o jogo do Show do Milhão.');
+        currentQuestionIndex = 0;
+        currentRoundIndex++;
+
+        if (currentRoundIndex < questions.length) {
+            showQuestion();
+        } else {
+            alert('Parabéns! Você completou o jogo do Show do Milhão.');
+        }
     }
 }
 
