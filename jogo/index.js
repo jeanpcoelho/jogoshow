@@ -69,10 +69,11 @@ function checkAnswer(selectedOption) {
     const resultContainer = document.getElementById('result-container');
 
     if (selectedOption === currentQuestion.answer) {
-        resultContainer.innerText = 'Você acertou!';
-        playerScore++;
+        resultContainer.innerText = `Você acertou! Pontuação: +${currentQuestion.points.correct}`;
+        playerScore += currentQuestion.points.correct;
     } else {
-        resultContainer.innerText = 'Você errou!';
+        resultContainer.innerText = `Você errou! Pontuação: +${currentQuestion.points.incorrect}`;
+        playerScore += currentQuestion.points.incorrect;
     }
 
     const nextButton = document.getElementById('next-button');
