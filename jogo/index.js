@@ -32,7 +32,11 @@ function showPlayerInfo() {
 function showQuestion() {
     const questionContainer = document.getElementById('question-container');
     const optionsContainer = document.getElementById('options-container');
+    const resultContainer = document.getElementById('result-container');
     const nextButton = document.getElementById('next-button');
+
+    // Limpar resultado da pergunta anterior
+    resultContainer.innerText = '';
 
     const currentQuestion = questions[currentRoundIndex][currentQuestionIndex];
 
@@ -62,12 +66,13 @@ function showQuestion() {
 
 function checkAnswer(selectedOption) {
     const currentQuestion = questions[currentRoundIndex][currentQuestionIndex];
+    const resultContainer = document.getElementById('result-container');
 
     if (selectedOption === currentQuestion.answer) {
-        alert('Resposta Correta!');
+        resultContainer.innerText = 'Você acertou!';
         playerScore++;
     } else {
-        alert('Resposta Incorreta!');
+        resultContainer.innerText = 'Você errou!';
     }
 
     const nextButton = document.getElementById('next-button');
