@@ -1,5 +1,5 @@
 # jogoshow
- Jogo show do milhao uma breve Introdução à linguagem JavaScript O objetivo aqui é apresentar aspectos fundamentais da linguagem JS
+ Um quiz de perguntas que tenta simular o jogo do show do milhão, e uma breve Introdução à linguagem JavaScript, o objetivo aqui é apresentar aspectos fundamentais da linguagem JS
 
 JEAN PEREIRA COELHO
 
